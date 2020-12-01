@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "MediatR.Sandbox.CustomerServiceApi.GrpcServices";
+
+service CustomerServiceGrpc {
+  rpc CreateCustomer (CreateCustomerGrpcMessage) returns (CustomerIdGrpcMessage);
+  rpc LoadCustomer (LoadCustomerGrpcMessage) returns (CustomerGrpcMessage);
+  rpc DeleteCustomer(DeleteCustomerGrpcMessage) returns (google.protobuf.Empty);
+}
+
+message LoadCustomerGrpcMessage {
+  bytes customerId = 1;
+}
+
+message CreateCustomerGrpcMessage {
+  string name = 1;
+}
+
+message DeleteCustomerGrpcMessage {
+  bytes id = 1;
+}
+
+message CustomerIdGrpcMessage {
+  bytes id = 1;
+}
+
+message CustomerGrpcMessage {
+  bytes id = 1;
+  string name = 2;
+}
